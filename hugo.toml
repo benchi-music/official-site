@@ -20,7 +20,7 @@ theme = 'PaperMod'
   ShowBreadCrumbs = true
   # GoatCounter サイトコード。https://www.goatcounter.com/ でサイト作成後、
   # 発行される code（例: https://XXXX.goatcounter.com の XXXX 部分）を設定する
-  goatcounter_code = ""
+  goatcounter_code = "benchi-music"
 
 [params.social]
   twitter = "577CZ5iYuwf5zkL"
