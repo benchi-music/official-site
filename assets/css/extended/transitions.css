@@ -1,0 +1,24 @@
+.menu a,
+.social-icons a,
+.breadcrumbs a,
+.post-tags a,
+.pagination a,
+.paginav a,
+.paginav span,
+.top-link,
+.theme-toggle,
+.discography-streaming-link,
+.blog-tags-link a {
+    transition: color 0.2s ease, background-color 0.2s ease,
+        border-color 0.2s ease, text-decoration-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.social-icons a:hover,
+.theme-toggle:hover {
+    transform: translateY(-2px);
+}
+
+.post-tags a:hover {
+    transform: translateY(-1px);
+}

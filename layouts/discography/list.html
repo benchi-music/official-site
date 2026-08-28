@@ -1,0 +1,57 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{- end }}
+</header>
+
+{{- $albums := where .RegularPages "Params.release_type" "album" }}
+{{- $singles := where .RegularPages "Params.release_type" "single" }}
+{{- $eps := where .RegularPages "Params.release_type" "ep" }}
+{{- $streamingAlbums := where $albums "Params.streaming_url" "ne" "" }}
+{{- $selfReleasedAlbums := where $albums "Params.streaming_url" "eq" "" }}
+{{- $streamingSingles := where $singles "Params.streaming_url" "ne" "" }}
+{{- $streamingEps := where $eps "Params.streaming_url" "ne" "" }}
+{{- $selfReleasedSingles := where $singles "Params.streaming_url" "eq" "" }}
+
+{{- $sections := slice
+  (dict "heading" "配信アルバム" "pages" $streamingAlbums)
+  (dict "heading" "配信EP" "pages" $streamingEps)
+  (dict "heading" "配信シングル" "pages" $streamingSingles)
+  (dict "heading" "自主制作CDアルバム(未配信)" "pages" $selfReleasedAlbums)
+  (dict "heading" "自主制作CDシングル(未配信)" "pages" $selfReleasedSingles)
+}}
+
+{{- range $sections }}
+{{- $pages := .pages | default (slice) }}
+{{- if gt (len $pages) 0 }}
+<section class="discography-group">
+  <h2 class="discography-group-title">{{ .heading }}</h2>
+  <div class="discography-grid">
+    {{- range $pages.ByDate.Reverse }}
+    <article class="post-entry discography-entry">
+      {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+      {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+      <header class="entry-header">
+        <h3 class="entry-hint-parent">{{ .Title }}</h3>
+      </header>
+      {{- with .Params.release_date }}
+      <p class="discography-release-date">{{ . }}</p>
+      {{- end }}
+      <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+      {{- with .Params.streaming_url }}
+      <a class="discography-streaming-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">配信サイトで聴く</a>
+      {{- end }}
+    </article>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+{{- end }}
+
+{{- end }}{{- /* end main */ -}}

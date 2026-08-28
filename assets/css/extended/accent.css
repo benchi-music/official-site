@@ -1,0 +1,62 @@
+:root {
+    --accent: rgb(91, 163, 199);
+}
+
+:root[data-theme="dark"] {
+    --accent: rgb(126, 196, 232);
+}
+
+.accent-link,
+.discography-streaming-link {
+    color: var(--accent);
+}
+
+.discography-group-title,
+.home-section-title,
+.page-header h1,
+.post-title,
+.post-content h2 {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+    display: inline-block;
+}
+
+.page-header,
+.post-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: var(--gap);
+}
+
+.post-entry:hover,
+.post-entry:focus-within {
+    border-color: var(--accent);
+}
+
+.menu .active,
+.menu a:hover,
+.social-icons a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+}
+
+/* First/last page jump links in blog list pagination */
+.pagination .first {
+    margin-inline-end: 8px;
+    opacity: 0.7;
+}
+
+.pagination .last {
+    margin-inline-start: 8px;
+    opacity: 0.7;
+}
+
+/* Unify single-page background with list-page background in light mode
+   (PaperMod gives list pages --code-bg but single pages plain --theme,
+   which only happens to match in dark mode). */
+body:not(.list) {
+    background: var(--code-bg);
+}
+
+[data-theme="dark"] body:not(.list) {
+    background: var(--theme);
+}

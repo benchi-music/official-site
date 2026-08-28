@@ -1,0 +1,35 @@
+---
+title: "6th Album「cu6e」"
+date: 2022-02-23
+release_date: "2022-02-23"
+release_type: "album"
+streaming_url: "https://big-up.style/AhbP5c2vlc"
+cover:
+  image: "/images/covers/6th-cu6e.jpg"
+draft: false
+tracks:
+  - title: "ルート"
+    production_post: "post-16-1"
+    lyrics_post: "post-16-2"
+  - title: "dice"
+    production_post: "post-17-1"
+    lyrics_post: "post-17-2"
+  - title: "cube"
+    production_post: "post-18-1"
+    lyrics_post: "post-18-2"
+  - title: "今夜君を連れて"
+    production_post: "post-19-1"
+    lyrics_post: "post-19-2"
+  - title: "for me"
+    production_post: "post-20-1"
+    lyrics_post: "post-20-2"
+  - title: "Beautiful World"
+    production_post: "post-21-1"
+    lyrics_post: "post-21-2"
+  - title: "ones"
+    production_post: "post-22-1"
+    lyrics_post: "post-22-2"
+  - title: "Back to the days"
+    production_post: "post-24-1"
+    lyrics_post: "post-24-2"
+---

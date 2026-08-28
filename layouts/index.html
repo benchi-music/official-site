@@ -1,0 +1,82 @@
+{{- define "main" }}
+
+{{- if (and site.Params.profileMode.enabled .IsHome) }}
+{{- partial "index_profile.html" . }}
+{{- else }} {{/* if not profileMode */}}
+
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
+{{- $pages = $pages | first 10 }}
+
+{{- if site.Params.homeInfoParams }}
+{{- partial "home_info.html" . }}
+{{- end }}
+
+{{- $releases := where site.RegularPages "Section" "discography" }}
+{{- $releases = where $releases "Params.streaming_url" "ne" "" }}
+{{- $latestRelease := "" }}
+{{- with ($releases.ByParam "release_date").Reverse }}
+{{- $latestRelease = index . 0 }}
+{{- end }}
+
+{{- with $latestRelease }}
+{{- $typeLabels := dict "album" "アルバム" "single" "シングル" "ep" "EP" }}
+<section class="latest-release">
+  <h2 class="home-section-title">最新作</h2>
+  <article class="latest-release-card">
+    <div class="latest-release-cover">
+      {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+      {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+    </div>
+    <div class="latest-release-info">
+      <p class="latest-release-type">{{ index $typeLabels .Params.release_type | default .Params.release_type }}</p>
+      <h3 class="latest-release-name"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+      {{- with .Params.release_date }}
+      <p class="discography-release-date">{{ . }}</p>
+      {{- end }}
+      {{- with .Params.streaming_url }}
+      <a class="discography-streaming-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">配信サイトで聴く</a>
+      {{- end }}
+    </div>
+  </article>
+</section>
+{{- end }}
+
+<h2 class="home-section-title">Blog</h2>
+
+{{- range $pages }}
+<article class="post-entry">
+  {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+  {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+      {{- .Title }}
+      {{- if .Draft }}
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+      {{- end }}
+    </h2>
+  </header>
+  {{- if (ne (.Param "hideSummary") true) }}
+  <div class="entry-content">
+    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+  </div>
+  {{- end }}
+  {{- if not (.Param "hideMeta") }}
+  <footer class="entry-footer">
+    {{- partial "post_meta.html" . -}}
+  </footer>
+  {{- end }}
+  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+
+<p class="home-blog-more"><a href="{{ "blog/" | relURL }}">ブログ記事をすべて見る</a></p>
+
+{{- end }}{{/* end profileMode */}}
+
+{{- end }}{{- /* end main */ -}}

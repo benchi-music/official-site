@@ -1,0 +1,56 @@
+{{- define "main" }}
+
+<article class="post-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- if not (.Param "hideMeta") }}
+    <div class="post-meta">
+      {{- partial "post_meta.html" . -}}
+    </div>
+    {{- end }}
+  </header>
+
+  {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+  <div class="discography-cover">
+    {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
+  </div>
+
+  <div class="post-content md-content">
+    {{- with .Params.release_date }}
+    {{- $label := cond ($.Params.streaming_url) "配信日" "制作年" }}
+    <p><strong>{{ $label }}：</strong>{{ . }}</p>
+    {{- end }}
+
+    {{- with .Params.streaming_url }}
+    <p><a class="discography-streaming-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">配信サイトで聴く</a></p>
+    {{- end }}
+
+    {{- with .Params.tracks }}
+    <h2>収録曲</h2>
+    <ol class="track-list">
+      {{- range . }}
+      <li>
+        <span class="track-title">{{ .title }}{{ with .duration }}（{{ . }}）{{ end }}</span>
+        {{- $production := "" }}
+        {{- $lyrics := "" }}
+        {{- with .production_post }}{{ $production = $.Site.GetPage (printf "/blog/%s" .) }}{{ end }}
+        {{- with .lyrics_post }}{{ $lyrics = $.Site.GetPage (printf "/blog/%s" .) }}{{ end }}
+        {{- if or $production $lyrics }}
+        <span class="track-links">
+          {{- with $production }}<a href="{{ .Permalink }}">制作秘話</a>{{- end }}
+          {{- with $lyrics }}<a href="{{ .Permalink }}">歌詞</a>{{- end }}
+        </span>
+        {{- end }}
+      </li>
+      {{- end }}
+    </ol>
+    {{- end }}
+
+    {{- if .Content }}
+    {{ .Content }}
+    {{- end }}
+  </div>
+</article>
+
+{{- end }}

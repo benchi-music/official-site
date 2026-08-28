@@ -1,0 +1,38 @@
+.entry-tags {
+    position: relative;
+    z-index: 1;
+    margin-top: 8px;
+}
+
+.entry-tags a {
+    font-size: 12px;
+    line-height: 28px;
+    padding: 0 10px;
+}
+
+.blog-tags-link {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.blog-tags-link a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.blog-tags-link a:hover {
+    text-decoration: underline;
+}
+
+.md-content.lyrics-content p {
+    white-space: pre-line;
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.share-label {
+    text-align: center;
+    font-size: 14px;
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
