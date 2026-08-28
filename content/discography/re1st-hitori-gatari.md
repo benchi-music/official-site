@@ -5,7 +5,7 @@ release_date: "2024-09-18"
 release_type: "album"
 streaming_url: "https://big-up.style/tDrhrX5XLM"
 cover:
-  image: "/images/covers/re1st-hitori-gatari.jpg"
+  image: "images/covers/re1st-hitori-gatari.jpg"
 draft: false
 tracks:
   - title: "ステップ"

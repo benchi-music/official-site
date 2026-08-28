@@ -5,7 +5,7 @@ theme = 'PaperMod'
 
 [params.label]
   text = "ベンチ"
-  icon = "/images/logo.png"
+  icon = "images/logo.png"
   iconHeight = 75
 
 [params]
@@ -13,7 +13,7 @@ theme = 'PaperMod'
   mainSections = ["blog"]
   description = "音楽グループの公式サイト"
   author = "ベンチ"
-  images = ["/images/logo.png"]
+  images = ["images/logo.png"]
   ShowReadingTime = false
   ShowShareButtons = true
   ShowPostNavLinks = true

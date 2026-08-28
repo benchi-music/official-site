@@ -5,7 +5,7 @@ release_date: "2021-10-06"
 release_type: "single"
 streaming_url: "https://big-up.style/6du3t38dJC"
 cover:
-  image: "/images/covers/single-beautiful-world.jpg"
+  image: "images/covers/single-beautiful-world.jpg"
 draft: false
 tracks:
   - title: "beautiful world"

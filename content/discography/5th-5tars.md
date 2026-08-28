@@ -5,7 +5,7 @@ release_date: "2019-06-25"
 release_type: "album"
 streaming_url: "https://big-up.style/TYsaRCpGFB"
 cover:
-  image: "/images/covers/5th-5tars.jpg"
+  image: "images/covers/5th-5tars.jpg"
 draft: false
 tracks:
   - title: "声"

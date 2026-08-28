@@ -5,7 +5,7 @@ release_date: "2026-02-06"
 release_type: "album"
 streaming_url: "https://big-up.style/GeYTij7YEP"
 cover:
-  image: "/images/covers/re2nd-seco.jpg"
+  image: "images/covers/re2nd-seco.jpg"
 draft: false
 tracks:
   - title: "Now!!"

@@ -5,7 +5,7 @@ release_date: "2022-02-23"
 release_type: "album"
 streaming_url: "https://big-up.style/AhbP5c2vlc"
 cover:
-  image: "/images/covers/6th-cu6e.jpg"
+  image: "images/covers/6th-cu6e.jpg"
 draft: false
 tracks:
   - title: "ルート"

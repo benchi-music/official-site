@@ -81,7 +81,7 @@ release_date: "2024-01-15"   # 実際のリリース日（手入力）
 release_type: "album"        # album | single | ep（Hugo予約語の type は使わない）
 streaming_url: "https://..." # 配信プラットフォームへのリンク
 cover:
-  image: "/images/covers/album-name.jpg"
+  image: "images/covers/album-name.jpg"  # 先頭に / を付けない（PaperModのcover.htmlがabsURLで解決するため、先頭/だとbaseURLのサブパス(/official-site/)が抜け落ちる）
 tracks:
   - title: "曲名"
     duration: "3:45"

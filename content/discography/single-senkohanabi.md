@@ -5,7 +5,7 @@ release_date: "2023-10-14"
 release_type: "single"
 streaming_url: "https://big-up.style/puEkW1A7yX"
 cover:
-  image: "/images/covers/single-senkohanabi.jpg"
+  image: "images/covers/single-senkohanabi.jpg"
 draft: false
 tracks:
   - title: "線香花火"
