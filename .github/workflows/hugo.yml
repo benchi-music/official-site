@@ -5,6 +5,10 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    # 毎日 JST 0:10 (UTC 15:10) に再ビルド・再デプロイし、
+    # 未来日時を指定していた予約投稿を公開日到来時に自動反映させる
+    - cron: "10 15 * * *"
 
 permissions:
   contents: read
