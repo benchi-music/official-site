@@ -1,7 +1,7 @@
 ---
 title: "57. 新HP公開しました!"
 date: 2026-09-01T00:00:00+09:00
-draft: true
+draft: false
 tags: ["お知らせ"]
 ---
 
