@@ -1,0 +1,10 @@
+{{- /* Discography cover: shows a COMING SOON panel for upcoming releases whose jacket is not public yet */ -}}
+{{- with .cxt }}
+{{- if and .Params.upcoming (not .Params.cover.image) }}
+<figure class="entry-cover">
+  <div class="cover-placeholder">COMING SOON<small>ジャケットは近日公開</small></div>
+</figure>
+{{- else }}
+{{- partial "cover.html" (dict "cxt" . "IsSingle" $.IsSingle "isHidden" $.isHidden) }}
+{{- end }}
+{{- end }}

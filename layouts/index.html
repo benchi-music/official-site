@@ -12,33 +12,28 @@
 {{- partial "home_info.html" . }}
 {{- end }}
 
-{{- $releases := where site.RegularPages "Section" "discography" }}
+{{- $discography := where site.RegularPages "Section" "discography" }}
+{{- $upcoming := where $discography "Params.upcoming" true }}
+{{- $releases := where $discography "Params.upcoming" "!=" true }}
 {{- $releases = where $releases "Params.streaming_url" "ne" "" }}
 {{- $latestRelease := "" }}
 {{- with ($releases.ByParam "release_date").Reverse }}
 {{- $latestRelease = index . 0 }}
 {{- end }}
 
+{{- with $upcoming.ByDate.Reverse }}
+<section class="latest-release">
+  <h2 class="home-section-title">配信予定</h2>
+  {{- range . }}
+  {{- partial "latest_release_card.html" . }}
+  {{- end }}
+</section>
+{{- end }}
+
 {{- with $latestRelease }}
-{{- $typeLabels := dict "album" "アルバム" "single" "シングル" "ep" "EP" }}
 <section class="latest-release">
   <h2 class="home-section-title">最新作</h2>
-  <article class="latest-release-card">
-    <div class="latest-release-cover">
-      {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-      {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
-    </div>
-    <div class="latest-release-info">
-      <p class="latest-release-type">{{ index $typeLabels .Params.release_type | default .Params.release_type }}</p>
-      <h3 class="latest-release-name"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-      {{- with .Params.release_date }}
-      <p class="discography-release-date">{{ . }}</p>
-      {{- end }}
-      {{- with .Params.streaming_url }}
-      <a class="discography-streaming-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">配信サイトで聴く</a>
-      {{- end }}
-    </div>
-  </article>
+  {{- partial "latest_release_card.html" . }}
 </section>
 {{- end }}
 

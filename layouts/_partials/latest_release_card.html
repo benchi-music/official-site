@@ -1,0 +1,15 @@
+{{- $typeLabels := dict "album" "アルバム" "single" "シングル" "ep" "EP" }}
+<article class="latest-release-card">
+  <div class="latest-release-cover">
+    {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
+    {{- partial "release_cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+  </div>
+  <div class="latest-release-info">
+    <p class="latest-release-type">{{ index $typeLabels .Params.release_type | default .Params.release_type }}</p>
+    <h3 class="latest-release-name"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+    {{- partial "release_date.html" . }}
+    {{- with .Params.streaming_url }}
+    <a class="discography-streaming-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">配信サイトで聴く</a>
+    {{- end }}
+  </div>
+</article>

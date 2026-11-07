@@ -1,0 +1,3 @@
+{{- with .Params.release_date }}
+<p class="discography-release-date">{{ if $.Params.upcoming }}<span class="release-badge">配信予定</span>{{ end }}{{ . }}</p>
+{{- end }}

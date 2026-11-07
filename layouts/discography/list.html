@@ -13,8 +13,11 @@
 {{- $albums := where .RegularPages "Params.release_type" "album" }}
 {{- $singles := where .RegularPages "Params.release_type" "single" }}
 {{- $eps := where .RegularPages "Params.release_type" "ep" }}
-{{- $streamingAlbums := where $albums "Params.streaming_url" "ne" "" }}
-{{- $selfReleasedAlbums := where $albums "Params.streaming_url" "eq" "" }}
+{{- /* Upcoming albums are listed with streaming albums (badge marks them) */}}
+{{- $upcomingAlbums := where $albums "Params.upcoming" true }}
+{{- $releasedAlbums := where $albums "Params.upcoming" "!=" true }}
+{{- $streamingAlbums := union $upcomingAlbums (where $releasedAlbums "Params.streaming_url" "ne" "") }}
+{{- $selfReleasedAlbums := where $releasedAlbums "Params.streaming_url" "eq" "" }}
 {{- $streamingSingles := where $singles "Params.streaming_url" "ne" "" }}
 {{- $streamingEps := where $eps "Params.streaming_url" "ne" "" }}
 {{- $selfReleasedSingles := where $singles "Params.streaming_url" "eq" "" }}
@@ -36,13 +39,11 @@
     {{- range $pages.ByDate.Reverse }}
     <article class="post-entry discography-entry">
       {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-      {{- partial "cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
+      {{- partial "release_cover.html" (dict "cxt" . "IsSingle" false "isHidden" $isHidden) }}
       <header class="entry-header">
         <h3 class="entry-hint-parent">{{ .Title }}</h3>
       </header>
-      {{- with .Params.release_date }}
-      <p class="discography-release-date">{{ . }}</p>
-      {{- end }}
+      {{- partial "release_date.html" . }}
       <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
       {{- with .Params.streaming_url }}
       <a class="discography-streaming-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">配信サイトで聴く</a>
