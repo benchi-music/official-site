@@ -6,4 +6,6 @@ release_type: "album"
 # 配信開始まで true。配信日に削除し、date・release_date を配信日にして streaming_url を追加する
 upcoming: true
 draft: false
+cover:
+  image: "images/covers/re3rd-life-work.jpg"
 ---
